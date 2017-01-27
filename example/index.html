@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <form name="testForm" class="form-horizontal" ng-init="test.setMinValue = 2; test.minValTest = 1; test.date = 'Some Date'">
+            <div class="form-group">
+                <h1>Minimum value validator</h1>
+                <label class="control-label col-sm-3">Minimum value threshold</label>
+                <div class="col-sm-6">
+                    <input class="form-control" ng-model="test.setMinValue" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': testForm.minval.$invalid }">
+                <label class="control-label col-sm-3">Value</label>
+                <div class="col-sm-6">
+                    <input class="form-control" name="minval" ng-model="test.minValTest" min-value="{{test.setMinValue}}" />
+                </div>
+                <div class="control-label col-sm-3" style="text-align: left" ng-if="testForm.minval.$invalid">
+                    <p>Value is to low</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h1>Date format validator with <a target="_blank" href="https://momentjs.com/">Moment.js</a></h1>
+                <label class="control-label col-sm-3">Moment date format (<a target="_blank" href="https://momentjs.com/docs/#/parsing/string-format/">Moment.js docs</a>)</label>
+                <div class="col-sm-6">
+                    <app-date-format-setter></app-date-format-setter>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': testForm.date.$invalid }">
+                <label class="control-label col-sm-3">Date string</label>
+                <div class="col-sm-6">
+                    <input class="form-control" name="date" ng-model="test.date" date-format />
+                </div>
+                <div class="control-label col-sm-3" style="text-align: left" ng-if="testForm.date.$invalid">
+                    <p>Date format not valid</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</body>
+
+</html>
