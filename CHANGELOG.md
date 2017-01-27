@@ -1,4 +1,7 @@
 # Changelog
 
 ### VNEXT
-* Inital release
+* ...
+
+### v0.1.0
+* Initial release
