@@ -13,6 +13,16 @@ module.exports = function karmaConf(config) {
 
     reporters: ["progress", "karma-typescript"],
     browsers: ["PhantomJS"],
+
+    karmaTypescriptConfig: {
+      reports: {
+        "html": "coverage",
+        "lcovonly": {
+          "directory": "coverage",
+          "filename": "../lcov.info"
+        }
+      },
+    },
   };
 
   config.set(conf);
