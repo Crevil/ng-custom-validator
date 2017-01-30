@@ -9,7 +9,8 @@
     "clean": "rimraf coverage dist node_modules",
     "lint": "tslint src/**/*.ts example/**/*.ts",
     "test": "rimraf coverage && karma start",
-    "prepublish": "karma start --single-run && npm run compile",
+    "test:ci": "karma start --single-run",
+    "prepublish": "npm run compile",
     "compile": "rimraf dist && tsc",
     "start": "webpack-dev-server --config example/webpack.config.js --inline --progress --port 8080"
   },
