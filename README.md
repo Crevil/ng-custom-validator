@@ -1,4 +1,6 @@
 # Custom validation directive for AngularJS
+[![npm version](https://badge.fury.io/js/ng-custom-validator.svg)](https://badge.fury.io/js/ng-custom-validator)
+
 This is a generic validation directive to simplify custom validators for [AngularJS](https://angularjs.org/)
 
 To create a custom validator you need to specify a single `isValid()` method.
