@@ -5,7 +5,7 @@ class DateFormatSetterComponentController {
 
   constructor(private dateFormat: DateFormatService) {
     this.format = this.dateFormat.dateFormat;
-   }
+  }
 
   public setFormat(): void {
     this.dateFormat.dateFormat = this.format;

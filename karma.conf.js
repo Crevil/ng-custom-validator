@@ -1,18 +1,19 @@
 module.exports = function karmaConf(config) {
-    var conf = {
-        frameworks: ["jasmine", "karma-typescript"],
+  var conf = {
+    frameworks: ["jasmine", "karma-typescript"],
 
-        files: [
-            { pattern: "src/**/*.ts" },
-        ],
+    files: [
+      { pattern: "src/**/*.ts" },
+      { pattern: "example/validators/**/*.ts" },
+    ],
 
-        preprocessors: {
-            "**/*.ts": ["karma-typescript"],
-        },
+    preprocessors: {
+      "**/*.ts": ["karma-typescript"],
+    },
 
-        reporters: ["progress", "karma-typescript"],
-        browsers: ["PhantomJS"],
-    };
+    reporters: ["progress", "karma-typescript"],
+    browsers: ["PhantomJS"],
+  };
 
-    config.set(conf);
+  config.set(conf);
 };
