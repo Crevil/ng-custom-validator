@@ -48,6 +48,17 @@ describe('ng-custom-validator', () => {
       expect(ngModel.$validators[directiveName]).toBeDefined();
     });
 
+    it('should init ngModel validators with validateInput method', () => {
+      const modelValue = 5;
+      const viewValue = 5;
+      const validateSpy = spyOn(customValidatorDirective, 'validateInput');
+      customValidatorDirective.link(undefined, undefined, attrs, ngModel);
+
+      ngModel.$validators[directiveName](modelValue, viewValue);
+
+      expect(validateSpy).toHaveBeenCalledTimes(1);
+    });
+
     it('should observe on the directives attribute', () => {
       const observeSpy = spyOn(attrs, '$observe');
 

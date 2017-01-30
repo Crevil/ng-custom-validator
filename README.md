@@ -1,5 +1,6 @@
 # Custom validation directive for AngularJS
 [![Build Status](https://travis-ci.org/Crevil/ng-custom-validator.svg?branch=master)](https://travis-ci.org/Crevil/ng-custom-validator)
+[![Coverage Status](https://coveralls.io/repos/github/Crevil/ng-custom-validator/badge.svg?branch=master)](https://coveralls.io/github/Crevil/ng-custom-validator?branch=master)
 [![npm version](https://badge.fury.io/js/ng-custom-validator.svg)](https://badge.fury.io/js/ng-custom-validator)
 
 This is a generic validation directive to simplify custom validators for [AngularJS](https://angularjs.org/)

@@ -15,4 +15,13 @@ describe('minValue validator', () => {
 
     expect(result).toBe(true);
   });
+
+  it('should return false if minValue attribute is not defined', () => {
+    const value = 5;
+    const attrs = { minValue: undefined } as IMinValueAttrs;
+
+    const result = customValidator.isValid(value, attrs);
+
+    expect(result).toBe(false);
+  });
 });
