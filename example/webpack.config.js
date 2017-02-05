@@ -20,14 +20,14 @@ module.exports = {
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
         loader: "awesome-typescript-loader",
       },
       {
         test: /\.html$/,
-        loader: "html",
+        loader: "html-loader",
       },
     ],
   },
