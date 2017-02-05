@@ -3,63 +3,60 @@
 [![Coverage Status](https://coveralls.io/repos/github/Crevil/ng-custom-validator/badge.svg?branch=master)](https://coveralls.io/github/Crevil/ng-custom-validator?branch=master)
 [![npm version](https://badge.fury.io/js/ng-custom-validator.svg)](https://badge.fury.io/js/ng-custom-validator)
 
-This is a generic validation directive to simplify custom validators for [AngularJS](https://angularjs.org/)
+This is a generic validation directive to simplify custom validators for [AngularJS](https://angularjs.org/) written in [TypeScript](https://www.typescriptlang.org/).
 
 To create a custom validator you need to specify a single `isValid()` method.
 The wrapper takes care of setting the `ngModel` validity.
 
-# API
-## `interface IValidator<TDependencies>`
+# Installation
+
+```
+npm install ng-custom-validator --save
+```
+
+# Usage
+To create a custom validator, implement the `IValidator` interface and register it with the `CustomValidator` class.
+
+```typescript
+export interface IValidator<TDependencies> {
+  isValid<TValue>(value: TValue, attrs?: ng.IAttributes): boolean;
+  setDependencies?(dependencies: TDependencies): void;
+}
+```
 Implement this interface for your custom validator.
 
-### `isValid<TValue>(value: TValue, attrs?: ng.IAttributes): boolean`
+`isValid<TValue>(value: TValue, attrs?: ng.IAttributes): boolean`
 
-Return the validity of the value.
-
-`@param value: TValue`
-
-The field value to be validated.
-
-`@param attrs: ng.IAttributes`
-
-The attributes on the `<input />` tag the directive is attached to.
+Return the validity of the value parameter. This is where the custom validation logic goes.
+The `attrs` parameter holds the  attributes on the `<input />` tag the directive is attached to.
 This is useful when validating a value against some other value.
 
-### `setDependencies?(dependencies: TDependencies): void;`
+`setDependencies?(dependencies: TDependencies): void;`
 
 Optional method for getting injected dependencies.
-If the validator needs access to a service this is where they are injected.
+If the validator needs access to an AngularJS service this is where they are injected.
 
-## `class CustomValidator<TDependencies>`
+`class CustomValidator<TDependencies>`
+
 This is the class implementing the AngularJS specific details.
 Use it to register the directive with AngularJS.
-
-### `new CustomValidator<TDependencies>(validator: { new (): IValidator<TDependencies>; }, directiveName: string)`
-
-`@param validator`
-
-The validator identifier.
-This is a reference to the custom validator implementing the `IValidator`interface.
-
-`@param directiveName: string`
-
-The directive name. Used to set the form error classes, e.g. if name is  `minValue` the input will be marked with the CSS class `ng-invalid-min-value` by AngularJS.
-Must be pascal cased.
-
+The constructor takes the a validator of type `IValidator` and a `directiveName` as paramaters and takes care of the rest.
+The directive name is used to set the form validity classes, e.g. if name is  `minValue` the input will be marked with the CSS class `ng-invalid-min-value` by AngularJS.
 
 # Examples
 See live examples by running `npm start` or head into the `examples` folder.
 
 ## Minimum value validator
-Create a class implementing the `Validator<TDependencies>` interface and register the directive with Angular:
+Create a class implementing the `Validator<TDependencies>` interface and register the directive with AngularJS.
+
 ```typescript
 import { IValidator } from 'ng-custom-validator';
 
-export interface IMinValueAttrs extends ng.IAttributes {
+interface IMinValueAttrs extends ng.IAttributes {
     minValue: string;
 }
 
-export class MinValueValidator implements IValidator<void> {
+class MinValueValidator implements IValidator<void> {
     public isValid(value: number, attrs?: IMinValueAttrs ): boolean {
         if (!attrs.minValue) {
             return false;
@@ -68,6 +65,7 @@ export class MinValueValidator implements IValidator<void> {
         return value >= parseInt(attrs.minValue, 10);
     }
 }
+
 const validator = new CustomValidator(MinValueValidator, 'minValue');
 angular
     .module('app', [])
